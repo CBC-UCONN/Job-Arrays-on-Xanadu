@@ -30,7 +30,7 @@ An example of a trivial array job script, which would be submitted using `sbatch
 #SBATCH --mem=1G
 #SBATCH --partition=general
 #SBATCH --qos=general
-#SBATCH --array=[1-1000]%20
+#SBATCH --array=[1-5000]%20
 ##SBATCH --mail-type=ALL
 ##SBATCH --mail-user=YOUR.EMAIL@uconn.edu
 #SBATCH -o %x_%A_%a.out
@@ -45,10 +45,10 @@ echo This is array task number $SLURM_ARRAY_TASK_ID
 
 The job will produce 2 files for each task. Each `.out` file contains the hostname and the task number for each task, and the `.err` file contains any corresponding text printed to the standard error stream. 
 
-For each task, the variable SLURM_ARRAY_TASK_ID is set to the task number. These numbers can range from 0 to 1000 (currently the maximum array size on Xanadu), but can be any set of numbers or ranges, separated by commas. The numbers are specified on this line:
+For each task, the variable SLURM_ARRAY_TASK_ID is set to the task number. These numbers can range from 0 to 5000 (currently the maximum array size on Xanadu), but can be any set of numbers or ranges, separated by commas. The numbers are specified on this line:
 
 ```bash
-#SBATCH --array=[1-1000]%20
+#SBATCH --array=[1-5000]%20
 ```
 
 The bracketed range gives the task numbers, and `%20` indicates that 20 tasks should run simultaneously. The other SLURM parameters should be set to match the requirements of each task. For example, if you are aligning a fastq file using `bwa` and you want to use 4 CPUs, you would set `#SBATCH -c 4`. 
