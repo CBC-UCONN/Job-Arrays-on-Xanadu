@@ -66,6 +66,7 @@ cd array_test_2
 
 touch Sample_{A..Y}.R1.fastq
 touch Sample_{A..Y}.R2.fastq
+
 ```
 
 Say we wanted to use an array job to align each of these samples in parallel. One way to approach this is to create an array variable containing the list of files to analyze, and then use the SLURM_ARRAY_TASK_ID to retrieve elements of the list. 
